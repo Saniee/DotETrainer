@@ -1,6 +1,6 @@
 # DotE Trainer
 Designed for basically cheating, in Dragons Of The Edge.
 
-# To be tested in MP (Dont think it will work in there.)
+# MP works only when u are the host.
 
 # Currently Compatible with version 0.2.1.4
