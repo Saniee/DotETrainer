@@ -1,5 +1,5 @@
 # DotE Trainer
-Designed for basically cheating, in Dragons Of The Edge.
+Designed for basically cheating, in Dragons Of The Edge. https://discord.gg/Pk2mPBFgu8
 
 # MP works only when u are the host.
 
