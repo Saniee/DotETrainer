@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using Keystone;
 using Memory;
 
 namespace DotETrainer
@@ -12,12 +13,23 @@ namespace DotETrainer
     {
         Mem m = new Mem();
 
+        [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true)]
+        static extern bool VirtualFreeEx(IntPtr hProcess, UIntPtr lpAddress, UIntPtr dwSize, uint dwFreeType);
+
+        public bool DeAllocRegion(UIntPtr codecavebase, IntPtr openedHandle)
+        {
+            // maybe check if codecavebase is uintptr.zero and openedhandle is intptr.zero etc
+
+            return VirtualFreeEx(openedHandle, codecavebase, (UIntPtr)0, 0x00008000);
+        }
+
         public MainForm()
         {
             InitializeComponent();
         }
 
         bool ProcOpen = false;
+        private UIntPtr codeCaveHealth;
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
@@ -109,6 +121,26 @@ namespace DotETrainer
             else
             {
                 m.UnfreezeValue("DragonGame-Win64-Shipping.exe+03E64C90,30,250,560,4");
+            }
+        }
+
+        private void experimentalHealth_CheckedChanged(object sender, EventArgs e)
+        {
+            if (experimentalHealth.Checked)
+            {
+                byte[] newBytes =
+                {
+                   0xC7, 0x83, 0x78, 0x05, 0x00, 0x00, 0x00, 0x40, 0x9C, 0x45
+                };
+                codeCaveHealth = m.CreateCodeCave("DragonGame-Win64-Shipping.exe+95B549", newBytes, 8, 2048);
+                Debug.WriteLine("Address: " + codeCaveHealth.ToString());
+                m.FreezeValue("DragonGame-Win64-Shipping.exe+03E6EC10,0,20,618", "float", "1");
+            }
+            else
+            {
+                DeAllocRegion(codeCaveHealth, m.mProc.Handle);
+                m.WriteMemory("DragonGame-Win64-Shipping.exe+95B549", "bytes", "F3 0F 11 B3 78 05 00 00");
+                m.UnfreezeValue("DragonGame-Win64-Shipping.exe+03E6EC10,0,20,618");
             }
         }
     }

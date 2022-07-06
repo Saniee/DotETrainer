@@ -39,6 +39,7 @@
             this.infthirst = new System.Windows.Forms.CheckBox();
             this.inffuel = new System.Windows.Forms.CheckBox();
             this.BGWorker = new System.ComponentModel.BackgroundWorker();
+            this.experimentalHealth = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,9 +48,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 21);
+            this.label1.Size = new System.Drawing.Size(121, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Game Runnin: ";
+            this.label1.Text = "Game Running: ";
             // 
             // ProcOpenLabel
             // 
@@ -84,9 +85,9 @@
             this.infhealth.AutoSize = true;
             this.infhealth.Location = new System.Drawing.Point(12, 33);
             this.infhealth.Name = "infhealth";
-            this.infhealth.Size = new System.Drawing.Size(126, 25);
+            this.infhealth.Size = new System.Drawing.Size(123, 25);
             this.infhealth.TabIndex = 4;
-            this.infhealth.Text = "Infinite Health";
+            this.infhealth.Text = "Freeze Health";
             this.infhealth.UseVisualStyleBackColor = true;
             this.infhealth.CheckedChanged += new System.EventHandler(this.infhealth_CheckedChanged);
             // 
@@ -95,9 +96,9 @@
             this.infstamina.AutoSize = true;
             this.infstamina.Location = new System.Drawing.Point(12, 64);
             this.infstamina.Name = "infstamina";
-            this.infstamina.Size = new System.Drawing.Size(137, 25);
+            this.infstamina.Size = new System.Drawing.Size(134, 25);
             this.infstamina.TabIndex = 5;
-            this.infstamina.Text = "Infinite Stamina";
+            this.infstamina.Text = "Freeze Stamina";
             this.infstamina.UseVisualStyleBackColor = true;
             this.infstamina.CheckedChanged += new System.EventHandler(this.infstamina_CheckedChanged);
             // 
@@ -106,9 +107,9 @@
             this.infhunger.AutoSize = true;
             this.infhunger.Location = new System.Drawing.Point(10, 95);
             this.infhunger.Name = "infhunger";
-            this.infhunger.Size = new System.Drawing.Size(133, 25);
+            this.infhunger.Size = new System.Drawing.Size(130, 25);
             this.infhunger.TabIndex = 6;
-            this.infhunger.Text = "Infinite Hunger";
+            this.infhunger.Text = "Freeze Hunger";
             this.infhunger.UseVisualStyleBackColor = true;
             this.infhunger.CheckedChanged += new System.EventHandler(this.infhunger_CheckedChanged);
             // 
@@ -117,9 +118,9 @@
             this.infthirst.AutoSize = true;
             this.infthirst.Location = new System.Drawing.Point(10, 126);
             this.infthirst.Name = "infthirst";
-            this.infthirst.Size = new System.Drawing.Size(120, 25);
+            this.infthirst.Size = new System.Drawing.Size(117, 25);
             this.infthirst.TabIndex = 7;
-            this.infthirst.Text = "Infinite Thirst";
+            this.infthirst.Text = "Freeze Thirst";
             this.infthirst.UseVisualStyleBackColor = true;
             this.infthirst.CheckedChanged += new System.EventHandler(this.infthirst_CheckedChanged);
             // 
@@ -141,11 +142,23 @@
             this.BGWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BGWorker_ProgressChanged);
             this.BGWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BGWorker_RunWorkerCompleted);
             // 
+            // experimentalHealth
+            // 
+            this.experimentalHealth.AutoSize = true;
+            this.experimentalHealth.Location = new System.Drawing.Point(174, 22);
+            this.experimentalHealth.Name = "experimentalHealth";
+            this.experimentalHealth.Size = new System.Drawing.Size(145, 46);
+            this.experimentalHealth.TabIndex = 9;
+            this.experimentalHealth.Text = "Infinite Health + \r\nMore speed";
+            this.experimentalHealth.UseVisualStyleBackColor = true;
+            this.experimentalHealth.CheckedChanged += new System.EventHandler(this.experimentalHealth_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(234, 301);
+            this.ClientSize = new System.Drawing.Size(324, 301);
+            this.Controls.Add(this.experimentalHealth);
             this.Controls.Add(this.inffuel);
             this.Controls.Add(this.infthirst);
             this.Controls.Add(this.infhunger);
@@ -180,5 +193,6 @@
         private System.Windows.Forms.CheckBox infthirst;
         private System.Windows.Forms.CheckBox inffuel;
         private System.ComponentModel.BackgroundWorker BGWorker;
+        private System.Windows.Forms.CheckBox experimentalHealth;
     }
 }
